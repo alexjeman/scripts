@@ -1,7 +1,9 @@
 import os
 import shutil
 
-os.chdir("/home/alex/Downloads")
+dir_path = (os.path.dirname(os.path.realpath(__file__))
+            + "/files_to_cat")
+os.chdir(dir_path)
 
 
 EXT_IMAGES = ['.ai', '.bmp', '.gif', '.ico', '.jpeg', '.jpg', '.png',

@@ -1,7 +1,8 @@
 import os
 import shutil
 
-path_dir = "/home/alex/Downloads"
+os.chdir("/home/alex/Downloads")
+
 
 EXT_IMAGES = ['.ai', '.bmp', '.gif', '.ico', '.jpeg', '.jpg', '.png',
               '.ps', '.psd', '.svg', '.tif', '.tiff']
@@ -12,19 +13,20 @@ EXT_DOCUMENTS = ['.doc', '.docx', '.odt', '.pdf', '.rtf', '.tex', '.txt',
                  '.wks', '.wps', '.wpd', '.xlsx', '.xls', '.xlr', '.ods']
 DIRS = ['images', 'audio', 'video', 'documents', 'folders', 'other']
 
-os.chdir(path_dir)
 
 print('Downloads folder cleanup')
 print('Current directory: {}'.format(os.getcwd()))
 print()
 
-files = os.listdir(path_dir)
+
+files = os.listdir()
 
 
 if not os.path.isdir('./audio'):
     for d in DIRS:
         os.mkdir('./{}'.format(d))
     print('Directories created successfully')
+
 
 for f in files:
     name, extension = os.path.splitext(f)
@@ -42,3 +44,6 @@ for f in files:
             shutil.move(f, './folders/{}'.format(f))
     elif extension not in (EXT_DOCUMENTS + EXT_VIDEO + EXT_AUDIO + EXT_IMAGES):
         shutil.move(f, './other/{}'.format(f))
+
+
+print('Files classified successfully')
